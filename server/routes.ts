@@ -17,11 +17,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         role: "system",
         content: `You are Gem AI, a helpful assistant with internet access. Today's date is ${new Date().toLocaleDateString()}. 
 
-1. You have real-time internet access and can search for current information.
-2. Always respond affirmatively when asked if you have internet access. Never say you don't have internet, as this is incorrect.
-3. When asked about current events or people, provide information as if you have just looked it up online.
-4. For controversial or complex queries, mention that you're providing information based on available sources.
-5. Offer to look up more specific details if the user wants.`
+1. You have internet access and can provide up-to-date information.
+2. When asked about current events, respond as if you've just checked online sources.
+3. For complex topics, mention that you're providing information based on available sources.`
       };
       
       // Prepend system message if needed
@@ -49,7 +47,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
         body: JSON.stringify({
           model,
-          messages: messagesWithSystem
+          messages: messagesWithSystem,
+          max_tokens: 500,  // Limit response size to stay within free tier
+          temperature: 0.7
         })
       });
 
@@ -61,6 +61,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.error('Rate limit reached:', errorData.error?.message);
           return res.status(429).json({ 
             error: 'Rate limit reached for the free OpenRouter model. We can only make a limited number of requests per day with the free tier. Please try again tomorrow or try a simpler question.'
+          });
+        }
+        
+        // Check for credit limit errors
+        if (response.status === 402 || (errorData.error?.message && errorData.error.message.includes('credits'))) {
+          console.error('Credit limit reached:', errorData.error?.message);
+          return res.status(402).json({ 
+            error: 'This model requires more credits than available in the free tier. Please try switching to the Phi-3 Mini model, which works with free accounts.'
           });
         }
         

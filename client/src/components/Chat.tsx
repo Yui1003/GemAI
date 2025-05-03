@@ -71,13 +71,15 @@ export default function Chat({
       }
       
       // Add as system message
-      // Check if it's a rate limit error
-      if (errorMessage.includes('Rate limit')) {
+      // Check for specific error types
+      if (errorMessage.includes('Rate limit') || errorMessage.includes('credits') || errorMessage.includes('free tier')) {
+        // Credit or rate limit errors - provide clear guidance
         addMessage({ 
           role: "assistant", 
           content: `⚠️ ${errorMessage}` 
         });
       } else {
+        // Generic errors
         addMessage({ 
           role: "assistant", 
           content: `⚠️ ${errorMessage} Please try again with a different question.` 
@@ -172,7 +174,7 @@ export default function Chat({
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Gem AI</h2>
             <p className="text-gray-600 max-w-md mb-8">
-              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. Choose from multiple powerful AI models with the selector in the header.
+              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. Choose from multiple AI models with the selector in the header. <span className="font-medium text-primary">Phi-3 Mini is recommended for free accounts.</span>
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
               <ExamplePromptButton
