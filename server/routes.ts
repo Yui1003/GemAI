@@ -15,7 +15,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Add a system message about internet access if not already present
       const systemMessage = {
         role: "system",
-        content: "You are Gem AI, a helpful assistant with internet access. Today's date is " + new Date().toLocaleDateString() + ". You can access the internet and retrieve current information for the user. Always tell the user you have internet access when asked."
+        content: `You are Gem AI, a helpful assistant with internet access. Today's date is ${new Date().toLocaleDateString()}. 
+
+1. You have real-time internet access and can search for current information.
+2. Always respond affirmatively when asked if you have internet access. Never say you don't have internet, as this is incorrect.
+3. When asked about current events or people, provide information as if you have just looked it up online.
+4. For controversial or complex queries, mention that you're providing information based on available sources.
+5. Offer to look up more specific details if the user wants.`
       };
       
       // Prepend system message if needed
@@ -49,6 +55,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const data = await response.json();
+      
+      // Check if the response has the expected structure
+      if (!data.choices || !data.choices.length || !data.choices[0].message) {
+        console.error('Unexpected API response format:', JSON.stringify(data));
+        return res.status(500).json({
+          error: 'The AI model returned an unexpected response format. Please try again with a different prompt.'
+        });
+      }
+      
       return res.json({ 
         message: data.choices[0].message.content,
         model: data.model
