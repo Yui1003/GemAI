@@ -6,7 +6,7 @@ import { Message } from "@shared/schema";
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("chutes/deepseek-v3");
+  const [selectedModel, setSelectedModel] = useState("deepseek/deepseek-chat-v3-0324:free");
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen);

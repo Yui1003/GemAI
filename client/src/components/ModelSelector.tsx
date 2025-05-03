@@ -19,9 +19,9 @@ export default function ModelSelector({
         <SelectValue placeholder="Select model" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="chutes/deepseek-v3">DeepSeek V3 (free)</SelectItem>
-        <SelectItem value="chutes/mistral-small-3.1-24b">Mistral Small 3.1 24B (free)</SelectItem>
-        <SelectItem value="novitaai/qwen3-4b">Qwen3 4B (free)</SelectItem>
+        <SelectItem value="deepseek/deepseek-chat-v3-0324:free">DeepSeek V3 (free)</SelectItem>
+        <SelectItem value="mistralai/mistral-small-3.1-24b-instruct:free">Mistral Small 3.1 24B (free)</SelectItem>
+        <SelectItem value="qwen/qwen3-4b:free">Qwen3 4B (free)</SelectItem>
       </SelectContent>
     </Select>
   );
