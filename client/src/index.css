@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 245 79% 67%; /* Indigo color from the design */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 263 67% 67%; /* Purple color from the design */
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 167 72% 43%; /* Accent color from the design */
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 245 79% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 245 79% 67%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 263 67% 67%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 167 72% 43%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 245 79% 67%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground h-screen overflow-hidden;
+  }
+
+  .chat-container {
+    height: calc(100vh - 4rem);
+  }
+
+  .message-list {
+    max-height: calc(100vh - 11rem);
+  }
+
+  .typing-indicator {
+    @apply inline-flex items-center;
+  }
+
+  .typing-indicator span {
+    @apply h-2 w-2 mx-0.5 bg-secondary rounded-full opacity-40;
+    animation: typing 1.4s infinite ease-in-out both;
+  }
+
+  .typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typing {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+  }
+
+  code {
+    @apply font-mono text-sm;
+  }
+
+  pre {
+    @apply relative rounded-md;
+  }
+
+  .prose pre {
+    @apply bg-gray-800 text-gray-100;
+  }
+
+  .copy-button {
+    @apply absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded px-2 py-1 text-xs;
+  }
+}
