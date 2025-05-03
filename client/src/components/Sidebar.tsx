@@ -89,7 +89,7 @@ export default function Sidebar({ onNewChat, onClose, isMobile = false }: Sideba
 
       {!isMobile && (
         <div className="p-4 border-t border-gray-200">
-          <div className="text-sm text-gray-500">Powered by OpenRouter</div>
+          <div className="text-sm text-gray-500">Powered by DeepSeek via OpenRouter</div>
         </div>
       )}
     </div>

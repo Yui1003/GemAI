@@ -25,10 +25,9 @@ export interface Message {
 
 // Chat model options
 export const modelOptions = [
-  { value: "openai/gpt-3.5-turbo", label: "GPT-3.5 Turbo" },
-  { value: "anthropic/claude-instant-v1", label: "Claude Instant" },
-  { value: "google/palm", label: "Google PaLM" },
-  { value: "meta-llama/llama-2-13b-chat", label: "Llama 2 13B" },
+  { value: "deepseek-ai/deepseek-coder-33b-instruct", label: "DeepSeek Coder 33B" },
+  { value: "deepseek-ai/deepseek-math-7b-instruct", label: "DeepSeek Math 7B" },
+  { value: "01-ai/yi-34b-chat", label: "Yi 34B Chat" },
 ];
 
 // Chat completion request schema

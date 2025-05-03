@@ -6,7 +6,7 @@ import { Message } from "@shared/schema";
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("openai/gpt-3.5-turbo");
+  const [selectedModel, setSelectedModel] = useState("deepseek-ai/deepseek-coder-33b-instruct");
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen);

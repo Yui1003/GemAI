@@ -19,10 +19,9 @@ export default function ModelSelector({
         <SelectValue placeholder="Select model" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
-        <SelectItem value="anthropic/claude-instant-v1">Claude Instant</SelectItem>
-        <SelectItem value="google/palm">Google PaLM</SelectItem>
-        <SelectItem value="meta-llama/llama-2-13b-chat">Llama 2 13B</SelectItem>
+        <SelectItem value="deepseek-ai/deepseek-coder-33b-instruct">DeepSeek Coder 33B</SelectItem>
+        <SelectItem value="deepseek-ai/deepseek-math-7b-instruct">DeepSeek Math 7B</SelectItem>
+        <SelectItem value="01-ai/yi-34b-chat">Yi 34B Chat</SelectItem>
       </SelectContent>
     </Select>
   );

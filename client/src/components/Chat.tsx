@@ -136,7 +136,7 @@ export default function Chat({
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Gem AI</h2>
             <p className="text-gray-600 max-w-md mb-8">
-              Ask me anything or start a conversation. I'm powered by OpenRouter and can help with a variety of tasks.
+              Ask me anything or start a conversation. I'm powered by free DeepSeek models through OpenRouter.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
               <ExamplePromptButton
