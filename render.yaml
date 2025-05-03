@@ -2,8 +2,9 @@ services:
   - type: web
     name: gem-ai-chat
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: ./render-build.sh
     startCommand: npm start
+    rootDir: ./
     envVars:
       - key: OPENROUTER_API_KEY
         sync: false

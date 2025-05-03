@@ -46,12 +46,25 @@ A flexible AI chat application that leverages OpenRouter models with advanced mo
 
 This application can be deployed on Render.com or other similar platforms. Follow these steps for Render deployment:
 
+### Render.com Deployment (Recommended)
+
 1. Push your code to GitHub
 2. Create a new Web Service on Render
 3. Connect your GitHub repository
-4. Add the environment variable `OPENROUTER_API_KEY`
-5. Set the build command to `npm install && npm run build`
-6. Set the start command to `npm run start`
+4. Add the environment variable `OPENROUTER_API_KEY` with your OpenRouter API key
+5. Use the following configuration:
+   - Build Command: `./render-build.sh`
+   - Start Command: `npm start`
+   - Root Directory: `./`
+6. Click "Create Web Service"
+
+### Troubleshooting Deployment
+
+If you encounter issues with missing CSS on your deployed site:
+1. Make sure the `OPENROUTER_API_KEY` is properly set
+2. Check Render logs for any build errors
+3. Verify that assets are being generated properly during the build process
+4. Try redeploying with "Clear build cache & deploy" option
 
 ## License
 
