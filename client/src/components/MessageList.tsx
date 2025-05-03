@@ -50,7 +50,9 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
             className={`${
               message.role === "user"
                 ? "bg-primary text-white"
-                : "bg-gray-100 text-gray-900"
+                : message.content.startsWith("⚠️") 
+                  ? "bg-red-50 text-red-800 border border-red-200" 
+                  : "bg-gray-100 text-gray-900"
             } max-w-[85%] md:max-w-[75%] rounded-lg px-4 py-${
               message.role === "user" ? "2" : "3"
             } shadow-sm`}

@@ -49,6 +49,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (!response.ok) {
         const errorData = await response.json();
+        
+        // Check specifically for rate limit errors
+        if (response.status === 429 || (errorData.error?.message && errorData.error.message.includes('Rate limit'))) {
+          console.error('Rate limit reached:', errorData.error?.message);
+          return res.status(429).json({ 
+            error: 'The AI service has reached its free usage limit. Please try again later.'
+          });
+        }
+        
         return res.status(response.status).json({ 
           error: errorData.error?.message || `API returned ${response.status}`
         });

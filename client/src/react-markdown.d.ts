@@ -6,6 +6,7 @@ declare module 'react-markdown' {
     inline?: boolean;
     className?: string;
     children: React.ReactNode;
+    [key: string]: any;  // Allow any other properties
   }
   
   export default ReactMarkdown;

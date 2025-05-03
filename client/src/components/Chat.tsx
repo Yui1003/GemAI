@@ -51,10 +51,35 @@ export default function Chat({
       }
     } catch (error) {
       console.error("Error sending message:", error);
+      
+      // Add error message to chat
+      let errorMessage = "Sorry, there was an error getting a response.";
+      
+      // Try to get more specific error message
+      if (error instanceof Response) {
+        try {
+          const data = await error.json();
+          if (data.error) {
+            errorMessage = data.error;
+          }
+        } catch (e) {
+          // Use default error message
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
+      // Add as system message
+      addMessage({ 
+        role: "assistant", 
+        content: `⚠️ ${errorMessage} Please try again with a different question.` 
+      });
+      
+      // Show toast notification
       toast({
         variant: "destructive",
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to get response from AI",
+        description: errorMessage,
       });
     } finally {
       setIsLoading(false);
@@ -137,7 +162,7 @@ export default function Chat({
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Gem AI</h2>
             <p className="text-gray-600 max-w-md mb-8">
-              Ask me anything or start a conversation. I'm powered by free OpenRouter models.
+              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. I'm powered by free OpenRouter models.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
               <ExamplePromptButton
