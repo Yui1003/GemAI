@@ -70,10 +70,18 @@ export default function Chat({
       }
       
       // Add as system message
-      addMessage({ 
-        role: "assistant", 
-        content: `⚠️ ${errorMessage} Please try again with a different question.` 
-      });
+      // Check if it's a rate limit error
+      if (errorMessage.includes('Rate limit')) {
+        addMessage({ 
+          role: "assistant", 
+          content: `⚠️ ${errorMessage}` 
+        });
+      } else {
+        addMessage({ 
+          role: "assistant", 
+          content: `⚠️ ${errorMessage} Please try again with a different question.` 
+        });
+      }
       
       // Show toast notification
       toast({

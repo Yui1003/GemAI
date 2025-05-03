@@ -54,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (response.status === 429 || (errorData.error?.message && errorData.error.message.includes('Rate limit'))) {
           console.error('Rate limit reached:', errorData.error?.message);
           return res.status(429).json({ 
-            error: 'The AI service has reached its free usage limit. Please try again later.'
+            error: 'Rate limit reached for the free OpenRouter model. We can only make a limited number of requests per day with the free tier. Please try again tomorrow or try a simpler question.'
           });
         }
         

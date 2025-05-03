@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Message } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
+import type { CodeProps } from 'react-markdown';
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
@@ -65,7 +66,7 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
                   <div className="prose prose-sm max-w-none">
                     <ReactMarkdown
                       components={{
-                        code({ node, inline, className, children, ...props }) {
+                        code({ node, inline, className, children, ...props }: CodeProps) {
                           const match = /language-(\w+)/.exec(className || "");
                           return !inline && match ? (
                             <CodeBlock
