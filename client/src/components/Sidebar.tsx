@@ -17,6 +17,7 @@ interface SidebarProps {
   conversations?: ChatConversation[];
   currentChatId?: string | null;
   onSelectConversation?: (id: string) => void;
+  onClearAllConversations?: () => void;
 }
 
 export default function Sidebar({ 
@@ -25,7 +26,8 @@ export default function Sidebar({
   isMobile = false,
   conversations = [], 
   currentChatId = null,
-  onSelectConversation = () => {}
+  onSelectConversation = () => {},
+  onClearAllConversations = () => {}
 }: SidebarProps) {
   return (
     <div className="flex flex-col flex-1 h-full">
@@ -82,9 +84,20 @@ export default function Sidebar({
           New Chat
         </button>
         <div className="mt-4">
-          <h3 className="text-xs font-medium uppercase text-gray-500 mb-2">
-            Recent Conversations
-          </h3>
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="text-xs font-medium uppercase text-gray-500">
+              Recent Conversations
+            </h3>
+            {conversations.length > 0 && (
+              <button
+                onClick={onClearAllConversations}
+                className="text-xs text-gray-500 hover:text-red-500 transition"
+                title="Clear all conversations"
+              >
+                Clear All
+              </button>
+            )}
+          </div>
           <div className="space-y-1">
             {currentChatId && !conversations.find(c => c.id === currentChatId) && (
               <div className="py-2 px-3 rounded-md bg-gray-100 text-gray-900 text-sm flex items-center gap-2">
