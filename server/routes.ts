@@ -30,7 +30,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         : [systemMessage, ...messages];
 
       // Get OpenRouter API key from environment
-      const apiKey = process.env.OPENROUTER_API_KEY || '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';
+      const apiKey = process.env.OPENROUTER_API_KEY;
+      
+      if (!apiKey) {
+        return res.status(500).json({
+          error: 'OpenRouter API key not found. Please set the OPENROUTER_API_KEY environment variable.'
+        });
+      }
       
       // Make the request to OpenRouter API
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {

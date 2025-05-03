@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Chat from "@/components/Chat";
 import Sidebar from "@/components/Sidebar";
-import { Message } from "@shared/schema";
+import { Message, modelOptions } from "@shared/schema";
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("deepseek/deepseek-chat-v3-0324:free");
+  const [selectedModel, setSelectedModel] = useState(modelOptions[0].value);
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen);

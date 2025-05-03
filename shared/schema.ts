@@ -25,7 +25,10 @@ export interface Message {
 
 // Chat model options
 export const modelOptions = [
-  { value: "deepseek/deepseek-chat-v3-0324:free", label: "DeepSeek V3 (free)" },
+  { value: "openai/gpt-4o", label: "GPT-4o (Internet access)" },
+  { value: "anthropic/claude-3-opus-20240229", label: "Claude 3 Opus (Internet access)" },
+  { value: "anthropic/claude-3-sonnet-20240229", label: "Claude 3 Sonnet (Internet access)" },
+  { value: "meta-llama/llama-3-70b-instruct", label: "Llama 3 70B (Internet access)" },
 ];
 
 // Chat completion request schema
