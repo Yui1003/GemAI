@@ -26,8 +26,6 @@ export interface Message {
 // Chat model options
 export const modelOptions = [
   { value: "deepseek/deepseek-chat-v3-0324:free", label: "DeepSeek V3 (free)" },
-  { value: "mistralai/mistral-small-3.1-24b-instruct:free", label: "Mistral Small 3.1 24B (free)" },
-  { value: "qwen/qwen3-4b:free", label: "Qwen3 4B (free)" },
 ];
 
 // Chat completion request schema

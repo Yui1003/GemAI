@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-import ModelSelector from "./ModelSelector";
 import { Message } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -90,7 +89,9 @@ export default function Chat({
               />
             </svg>
           </button>
-          <ModelSelector selectedModel={selectedModel} onModelChange={onModelChange} />
+          <div className="h-9 px-3 py-2 rounded-md bg-gray-100 text-sm flex items-center">
+            DeepSeek V3 (free)
+          </div>
         </div>
         <button
           className="text-sm text-gray-600 hover:text-gray-900 flex items-center gap-1"

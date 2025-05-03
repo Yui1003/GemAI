@@ -12,6 +12,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'Invalid request. Model and messages array are required.' });
       }
 
+      // Add a system message about internet access if not already present
+      const systemMessage = {
+        role: "system",
+        content: "You are Gem AI, a helpful assistant with internet access. Today's date is " + new Date().toLocaleDateString() + ". You can access the internet and retrieve current information for the user. Always tell the user you have internet access when asked."
+      };
+      
+      // Prepend system message if needed
+      const messagesWithSystem = messages.some(msg => msg.role === 'system') 
+        ? messages 
+        : [systemMessage, ...messages];
+
       // Get OpenRouter API key from environment
       const apiKey = process.env.OPENROUTER_API_KEY || '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';
       
@@ -26,7 +37,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
         body: JSON.stringify({
           model,
-          messages
+          messages: messagesWithSystem
         })
       });
 
