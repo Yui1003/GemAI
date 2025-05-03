@@ -25,7 +25,7 @@ export interface Message {
 
 // Chat model options
 export const modelOptions = [
-  { value: "deepseek/deepseek-v3", label: "DeepSeek V3 (free)" },
+  { value: "deepseek-coder", label: "DeepSeek Coder (free)" },
 ];
 
 // Chat completion request schema

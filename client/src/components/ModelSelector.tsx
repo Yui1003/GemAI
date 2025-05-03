@@ -19,7 +19,7 @@ export default function ModelSelector({
         <SelectValue placeholder="Select model" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="deepseek/deepseek-v3">DeepSeek V3 (free)</SelectItem>
+        <SelectItem value="deepseek-coder">DeepSeek Coder (free)</SelectItem>
       </SelectContent>
     </Select>
   );
