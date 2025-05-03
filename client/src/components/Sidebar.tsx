@@ -1,12 +1,32 @@
 import React from "react";
+import { Message } from "@shared/schema";
+
+// Chat conversation interface mirroring the one in Home.tsx
+interface ChatConversation {
+  id: string;
+  title: string;
+  messages: Message[];
+  lastUpdated: number;
+  model: string;
+}
 
 interface SidebarProps {
   onNewChat: () => void;
   onClose?: () => void;
   isMobile?: boolean;
+  conversations?: ChatConversation[];
+  currentChatId?: string | null;
+  onSelectConversation?: (id: string) => void;
 }
 
-export default function Sidebar({ onNewChat, onClose, isMobile = false }: SidebarProps) {
+export default function Sidebar({ 
+  onNewChat, 
+  onClose, 
+  isMobile = false,
+  conversations = [], 
+  currentChatId = null,
+  onSelectConversation = () => {}
+}: SidebarProps) {
   return (
     <div className="flex flex-col flex-1 h-full">
       {isMobile && (
@@ -66,23 +86,57 @@ export default function Sidebar({ onNewChat, onClose, isMobile = false }: Sideba
             Recent Conversations
           </h3>
           <div className="space-y-1">
-            <div className="py-2 px-3 rounded-md bg-gray-100 text-gray-900 text-sm flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            {currentChatId && !conversations.find(c => c.id === currentChatId) && (
+              <div className="py-2 px-3 rounded-md bg-gray-100 text-gray-900 text-sm flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                  />
+                </svg>
+                Current Chat
+              </div>
+            )}
+            
+            {conversations.map(conversation => (
+              <button
+                key={conversation.id}
+                onClick={() => onSelectConversation(conversation.id)}
+                className={`w-full py-2 px-3 rounded-md text-sm flex items-center gap-2 hover:bg-gray-100 transition text-left truncate ${
+                  currentChatId === conversation.id ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                />
-              </svg>
-              Current Chat
-            </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-gray-500 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                  />
+                </svg>
+                <span className="truncate">{conversation.title}</span>
+              </button>
+            ))}
+            
+            {conversations.length === 0 && !currentChatId && (
+              <div className="text-sm text-gray-500 px-1 py-2">
+                No recent conversations
+              </div>
+            )}
           </div>
         </div>
       </div>
