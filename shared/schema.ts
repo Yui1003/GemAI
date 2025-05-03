@@ -25,7 +25,6 @@ export interface Message {
 
 // Chat model options
 export const modelOptions = [
-  { value: "microsoft/Phi-3-mini-4k-instruct", label: "Phi-3 Mini (Free)" },
   { value: "openai/gpt-4o", label: "GPT-4o (Internet access)" },
   { value: "anthropic/claude-3-opus-20240229", label: "Claude 3 Opus (Internet access)" },
   { value: "anthropic/claude-3-sonnet-20240229", label: "Claude 3 Sonnet (Internet access)" },

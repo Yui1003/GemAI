@@ -68,7 +68,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (response.status === 402 || (errorData.error?.message && errorData.error.message.includes('credits'))) {
           console.error('Credit limit reached:', errorData.error?.message);
           return res.status(402).json({ 
-            error: 'This model requires more credits than available in the free tier. Please try switching to the Phi-3 Mini model, which works with free accounts.'
+            error: 'This model requires more credits than available in the free tier. Please try again with a different model or upgrade to a paid OpenRouter account.'
           });
         }
         

@@ -174,7 +174,7 @@ export default function Chat({
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Gem AI</h2>
             <p className="text-gray-600 max-w-md mb-8">
-              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. Choose from multiple AI models with the selector in the header. <span className="font-medium text-primary">Phi-3 Mini is recommended for free accounts.</span>
+              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. Choose from multiple powerful AI models with the selector in the header.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
               <ExamplePromptButton
