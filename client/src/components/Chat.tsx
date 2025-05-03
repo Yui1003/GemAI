@@ -1,7 +1,8 @@
 import { useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-import { Message } from "@shared/schema";
+import ModelSelector from "./ModelSelector";
+import { Message, modelOptions } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -122,9 +123,10 @@ export default function Chat({
               />
             </svg>
           </button>
-          <div className="h-9 px-3 py-2 rounded-md bg-gray-100 text-sm flex items-center">
-            DeepSeek V3 (free)
-          </div>
+          <ModelSelector 
+            selectedModel={selectedModel} 
+            onModelChange={onModelChange} 
+          />
         </div>
         <button
           className="text-sm text-gray-600 hover:text-gray-900 flex items-center gap-1"
@@ -170,7 +172,7 @@ export default function Chat({
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Gem AI</h2>
             <p className="text-gray-600 max-w-md mb-8">
-              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. I'm powered by free OpenRouter models.
+              Ask me anything or start a conversation. I have internet access and can provide up-to-date information. Choose from multiple powerful AI models with the selector in the header.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
               <ExamplePromptButton

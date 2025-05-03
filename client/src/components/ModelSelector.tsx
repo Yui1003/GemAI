@@ -1,5 +1,6 @@
 import React from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { modelOptions } from "@shared/schema";
 
 interface ModelSelectorProps {
   selectedModel: string;
@@ -19,7 +20,11 @@ export default function ModelSelector({
         <SelectValue placeholder="Select model" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="deepseek/deepseek-chat-v3-0324:free">DeepSeek V3 (free)</SelectItem>
+        {modelOptions.map((model) => (
+          <SelectItem key={model.value} value={model.value}>
+            {model.label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
